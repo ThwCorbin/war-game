@@ -1,0 +1,1 @@
+console.log("Hiya. Open war is upon you whether you would risk it or not. -Aragorn");
