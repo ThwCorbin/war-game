@@ -71,21 +71,24 @@ let deck = [
 - store cards in each players' hand 
 
 ## Turn over cards
-- `turnOverCards()`
-- Consider combined with `compareCards()`
+- `turnCards()`
+- remove each player's top card and store in an array
+- turn over cards and print results
+- if cards have same rank, pass each player's top card to: `thisIsWar()`
+- if not, pass top cards (along with any cards from `thisIsWar()` if there was a tie earlier in the round) to `compareCards()`
+- consider combining with `compareCards()`
 
 ## Compare cards
 - `compareCards()`
-- if same cards: `thisIsWar()`
-- else, highest card wins and that player gets both cards
+- highest card wins and that player gets both cards
 - move cards to bottom of winner's deck: `collectCards()`
 - display results of the round: `displayRoundResults()`
 - check if game is over: `isGameOver()`
 
 ## War
 - `thisIsWar()`
-- each player places three cards face down and one card face up
-- `compareCards()`
+- each player places three cards face down
+- pass original tied cards along with six fae down card objects to `turnCards()`
 
 ## Check if game is over
 - `isGameOver()`
@@ -125,3 +128,7 @@ Enter `game.warStart = "war is peace"` in the console to start a war.
 - consider keeping game stats
 - else, `exchangeInsults()` directed at human, antiwar-card-game, console dweller and...
 - ...do something???
+
+# Resources
+
+The [Pagat website](https://www.pagat.com/war/war.html "Pagat website") provides the rules of the card game War.
