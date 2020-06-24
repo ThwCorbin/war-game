@@ -84,7 +84,6 @@ let deck = [
 ## Check if game is over
 - `isGameOver()`
 - if yes, display winner message: `displayWinnersMsg()`
-- ...and ask if players want to play again
 - else, `turnOverCards()`
 
 ## Move cards to winning player's hand
@@ -93,7 +92,10 @@ let deck = [
 
 ## Display (print) results after each round
 - `displayRoundResults()`
-- at minimum: 1) cards played by each user 2) player who won the round 3) how many cards each player has
+- at minimum:
+	1) cards played by each user
+	2) player who won the round
+	3) how many cards each player has
 - consider: current round number
 - exchange more insults: `exchangeInsults()`
 
@@ -115,5 +117,5 @@ Enter `gameStatus = "war is peace"` in the console to start a war.
 
 - if yes, `initializeGame()`
 - consider keeping game stats
-- else, `exchangeInsults()` directed at human, anti-war card game, console dweller and...
+- else, `exchangeInsults()` directed at human, antiwar-card-game, console dweller and...
 - ...do something???
