@@ -2,10 +2,10 @@
 
 ## Upon page load, initialize game
 - `initializeGame()`
-- consider Game class:
+- consider game object:
 
 ```js
-const gameState = {
+const game = {
 	active: Boolean,
 	rounds: Number,
 	startWar: null
@@ -17,7 +17,7 @@ const gameState = {
 - consider Player class:
 
 ```js
-const playerOne = {
+playerOne {
 	name: "Lord Horatio Nelson",
 	hand: Array of card Objects,
 	favoriteInsults: Array of Strings,
