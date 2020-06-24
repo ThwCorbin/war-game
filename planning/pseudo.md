@@ -1,14 +1,16 @@
 # War Card Game Planning
 
 ## Upon page load, initialize game
-- `initializeGame()`
-- consider game object:
+- `startGame()`
+- game object:
 
 ```js
 const game = {
 	active: Boolean,
 	rounds: Number,
-	startWar: null
+	startWar: null,
+	players: Array of players,
+	deck: Array of card functions
 }
 ```
 

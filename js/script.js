@@ -3,20 +3,25 @@ console.log(
 );
 
 const game = {
-	active: false,
-	rounds: 0,
-	startWar: null
+  active: false,
+  rounds: 0,
+  startWar: null,
+  players: [],
+  deck: null,
 };
 
 class Player {
-	constructor(fName, lName, title, userName, hand) {
-		this.fName = fName;
-		this.lName = lName;
-		this.title = title;
-		this.userName = userName;
-		this.hand = hand;
-	}
-	// add a player introduction console.log
+  constructor(fName, lName, title, userName, ship) {
+    this.fName = fName;
+    this.lName = lName;
+    this.title = title;
+    this.userName = userName;
+    this.ship = ship;
+    this.hand = [];
+  }
+  introduction() {
+    console.log(`${this.title} ${this.lName} has joined the war.`);
+  }
 }
 
 const newDeck = () => {
@@ -66,29 +71,69 @@ const shuffle = (deck) => {
   return deck;
 };
 
-let deck = shuffle(newDeck());
+let createPlayers = () => {
+  // Assume this data comes from a new player logging in to the game
+  let nelson = new Player(
+    "Horatio",
+    "Nelson",
+    "Admiral",
+    "hnelson1805",
+    "HMS Victory"
+  );
+  let villen = new Player(
+    "Pierre",
+    "Villeneuve",
+    "Admiral",
+    "pvillen1806",
+    "Bucentaure"
+  );
+	game.players.push(nelson, villen);
+	game.players.forEach(player => player.introduction());
+};
 
-// * Testing
-let horatioCard = deck.shift();
-let pierreCard = deck.pop();
+let deal = () => {
+	// code
+};
 
-horatioCard.rank === pierreCard.rank
-  ? console.log(
-      `This is war! Lord Nelson had the ${horatioCard.card}, and Admiral Villeneuve had the ${pierreCard.card}.`
-    )
-  : horatioCard.rank > pierreCard.rank
-  ? console.log(
-      `Lord Nelson wins with the ${horatioCard.card}! Admiral Villeneuve had the ${pierreCard.card}.`
-    )
-  : console.log(
-      `Admiral Villeneuve wins with the ${pierreCard.card}! Lord Nelson had the ${horatioCard.card}.`
-		);
-		
+let compareCards = () => {
+  // let horatioCard = deck.shift();
+  // let pierreCard = deck.pop();
 
-
+  // horatioCard.rank === pierreCard.rank
+  //   ? console.log(
+  //       `This is war! Lord Nelson had the ${horatioCard.card}, and Admiral Villeneuve had the ${pierreCard.card}.`
+  //     )
+  //   : horatioCard.rank > pierreCard.rank
+  //   ? console.log(
+  //       `Lord Nelson wins with the ${horatioCard.card}! Admiral Villeneuve had the ${pierreCard.card}.`
+  //     )
+  //   : console.log(
+  //       `Admiral Villeneuve wins with the ${pierreCard.card}! Lord Nelson had the ${horatioCard.card}.`
+  //     );
+};
 
 let startGame = () => {
-	game.active = true;
+  game.active = true;
+  createPlayers();
+  game.deck = shuffle(newDeck());
 };
 
 startGame();
+
+// * Testing
+// let deck = shuffle(newDeck());
+
+// let horatioCard = deck.shift();
+// let pierreCard = deck.pop();
+
+// horatioCard.rank === pierreCard.rank
+//   ? console.log(
+//       `This is war! Lord Nelson had the ${horatioCard.card}, and Admiral Villeneuve had the ${pierreCard.card}.`
+//     )
+//   : horatioCard.rank > pierreCard.rank
+//   ? console.log(
+//       `Lord Nelson wins with the ${horatioCard.card}! Admiral Villeneuve had the ${pierreCard.card}.`
+//     )
+//   : console.log(
+//       `Admiral Villeneuve wins with the ${pierreCard.card}! Lord Nelson had the ${horatioCard.card}.`
+//     );
