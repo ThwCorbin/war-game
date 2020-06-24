@@ -68,7 +68,6 @@ let deck = [
 
 ## Deal 26 cards to each player
 - `deal()`
-- leverage my previous card game deal function
 - store cards in each players' hand 
 
 ## Turn over cards
