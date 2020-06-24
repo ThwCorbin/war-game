@@ -72,6 +72,7 @@ let deck = [
 
 ## Turn over cards
 - `turnOverCards()`
+- Consider combined with `compareCards()`
 
 ## Compare cards
 - `compareCards()`
