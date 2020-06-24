@@ -100,11 +100,19 @@ const deal = () => {
 };
 
 const thisIsWar = (warCards) => {
-  //* Remove four cards from each players hand and store in temp array
-  //* Four cards: Tie card plus three cards dealt down
+  //* Remove 3 cards from the top of each player's hand
+  //* Store the cards in temp card arrays
   let cardsWar1 = game.players[0].hand.slice(0, 3);
   let cardsWar2 = game.players[1].hand.slice(0, 3);
-  turnCards(cardsWar1, cardsWar2, warCards);
+  // console.log(warCards);
+  // console.log(cardsWar1);
+  // console.log(cardsWar2);
+
+  //* Combine the temp arrays' values with warCards passed from turnCards()
+  warCards = [...warCards, ...cardsWar1, ...cardsWar2];
+  console.log(warCards);
+  //* Pass warCards to turnCards() to turn over each player's next card
+  turnCards(warCards);
 };
 
 const compareCards = () => {
@@ -126,32 +134,39 @@ const compareCards = () => {
   // warCards === null ?
 };
 
-const turnCards = (...warCards) => {
-  let loser;
+const turnCards = (warCards) => {
   //* Remove top card from each players hand
   let topCards = [
     game.players[0].hand.shift(),
     game.players[1].hand.shift()
   ];
-  // //* if warCards exist, the players are at war
-  // //* warCards holds the cards involved in the war from thisIsWar()
-  warCards ? (warCards = topCards.concat(warCards)) : warCards = topCards.slice();
-	console.log(warCards);
 
-  // //* Turn over cards and print
-  // console.log(
-  //   `${game.players[0].title} ${game.players[0].lName} turns over: ${game.players[0].hand[0].card}`
-  // );
-  // console.log(
-  //   `${game.players[1].title} ${game.players[1].lName} turns over: ${game.players[1].hand[0].card}`
-  // );
+  // console.log(topCards);
+  // console.log(warCards);
+  //* if warCards exist, the players were already at war
+  //* warCards holds the cards involved in the war passed from thisIsWar()
+  //* combined warCards with each player's top card stored in topCards array
+  //* if !warCards, assign each player's top card to warCards array
+  warCards ? (warCards = [...topCards, ...warCards]) : warCards = topCards.slice();
+	// console.log(warCards);
 
-  // if (game.players[0].hand[0].rank === game.players[1].hand[0].rank) {
-  //   console.log(`This is war!`);
-  //   thisIsWar(warCards);
-  // } else {
-	// 	compareCards(warCards);
-	// }
+  //* turn over cards and print
+  console.log(
+    `${game.players[0].title} ${game.players[0].lName} turns over: ${game.players[0].hand[0].card}`
+  );
+  console.log(
+    `${game.players[1].title} ${game.players[1].lName} turns over: ${game.players[1].hand[0].card}`
+  );
+
+  //* check if turned over cards are the same rank
+  //* if yes, pass warCards to thisIsWar()
+  if (game.players[0].hand[0].rank === game.players[1].hand[0].rank) {
+    console.log(`This is war!`);
+    thisIsWar(warCards);
+  } else {
+    return;
+		// compareCards(warCards);
+	}
 };
 
 const startGame = () => {
