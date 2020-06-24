@@ -7,7 +7,8 @@
 ```js
 const gameState = {
 	active: Boolean,
-	rounds: Number
+	rounds: Number,
+	startWar: null
 }
 ```
 
@@ -112,7 +113,7 @@ let deck = [
 - `playAgainPrompt()`
 
 ```
-Enter `gameStatus = "war is peace"` in the console to start a war.
+Enter `game.warStart = "war is peace"` in the console to start a war.
 ```
 
 - if yes, `initializeGame()`
