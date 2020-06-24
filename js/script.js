@@ -4,7 +4,7 @@ console.log(
 
 const game = {
   active: false,
-  rounds: 0,
+  round: 1,
   startWar: null,
   players: [],
   deck: null,
@@ -99,74 +99,78 @@ const deal = () => {
   });
 };
 
+const collectCards = (winner, warCards) => {
+  game.players[winner].hand.push(warCards);
+};
+
 const thisIsWar = (warCards) => {
   //* Remove 3 cards from the top of each player's hand
   //* Store the cards in temp card arrays
-  let cardsWar1 = game.players[0].hand.slice(0, 3);
-  let cardsWar2 = game.players[1].hand.slice(0, 3);
-  // console.log(warCards);
-  // console.log(cardsWar1);
-  // console.log(cardsWar2);
+  let cardsWar1 = game.players[0].hand.splice(0, 3);
+  let cardsWar2 = game.players[1].hand.splice(0, 3);
 
   //* Combine the temp arrays' values with warCards passed from turnCards()
   warCards = [...warCards, ...cardsWar1, ...cardsWar2];
-  console.log(warCards);
+
   //* Pass warCards to turnCards() to turn over each player's next card
   turnCards(warCards);
 };
 
-const compareCards = () => {
-  //* Compare cards and print
-  game.players[0].hand[0].rank === game.players[1].hand[0].rank
-    ? (console.log(`This is war!`), thisIsWar(warCards))
-    : game.players[0].hand[0].rank > game.players[1].hand[0].rank
-    ? (console.log(
-        `${game.players[0].title} ${game.players[0].lName} wins the round`
-      ),
-      (loser = 0))
-    : (console.log(
-        `${game.players[1].title} ${game.players[1].lName} wins the round`
-      ),
-      (loser = 1));
+const compareCards = (warCards) => {
+  let winner;
+  //* Compare cards and assign winner 0 or 1
+  game.players[0].hand[0].rank > game.players[1].hand[0].rank
+    ? (winner = 0)
+    : (winner = 1);
+
+  //* Print round results
+  console.log(
+    `Round ${game.round}: ${game.players[winner].title} ${game.players[winner].lName} wins`
+  );
 
   //* Send won card objects to collectCards()
-  //* if warCards === null, there was not a war
-  // warCards === null ?
+  collectCards(winner, warCards);
+
+  //* Print how may cards each player has after the round
+  console.log(
+    `${game.players[0].title} ${game.players[0].lName} has ${game.players[0].hand.length} cards`
+  );
+  console.log(
+    `${game.players[1].title} ${game.players[1].lName} has ${game.players[1].hand.length} cards`
+  );
 };
 
 const turnCards = (warCards) => {
-  //* Remove top card from each players hand
-  let topCards = [
-    game.players[0].hand.shift(),
-    game.players[1].hand.shift()
-  ];
-
-  // console.log(topCards);
-  // console.log(warCards);
-  //* if warCards exist, the players were already at war
-  //* warCards holds the cards involved in the war passed from thisIsWar()
-  //* combined warCards with each player's top card stored in topCards array
-  //* if !warCards, assign each player's top card to warCards array
-  warCards ? (warCards = [...topCards, ...warCards]) : warCards = topCards.slice();
-	// console.log(warCards);
+  //* Remove top card from each players hand and store in array
+  let topCards = [game.players[0].hand.shift(), game.players[1].hand.shift()];
 
   //* turn over cards and print
   console.log(
-    `${game.players[0].title} ${game.players[0].lName} turns over: ${game.players[0].hand[0].card}`
+    `Round ${game.round}: ${game.players[0].title} ${game.players[0].lName} turns over: ${topCards[0].card}`
   );
   console.log(
-    `${game.players[1].title} ${game.players[1].lName} turns over: ${game.players[1].hand[0].card}`
+    `Round ${game.round}: ${game.players[1].title} ${game.players[1].lName} turns over: ${topCards[1].card}`
   );
+
+  //* if warCards exist, the players were already at war
+  //* --warCards holds the cards involved in the war passed from thisIsWar()
+  //* --combine warCards with each player's new top card stored in topCards array
+  //* if !warCards, assign each player's top card to warCards array
+  warCards
+    ? warCards = [...topCards, ...warCards]
+    : warCards = topCards;
+  console.log(warCards);
+
 
   //* check if turned over cards are the same rank
   //* if yes, pass warCards to thisIsWar()
+  //* if no, pass wardCards to comp
   if (game.players[0].hand[0].rank === game.players[1].hand[0].rank) {
     console.log(`This is war!`);
     thisIsWar(warCards);
   } else {
-    return;
-		// compareCards(warCards);
-	}
+    compareCards(warCards);
+  }
 };
 
 const startGame = () => {
