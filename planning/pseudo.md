@@ -18,10 +18,10 @@ const gameState = {
 ```js
 const playerOne = {
 	name: "Lord Horatio Nelson",
-	hand: Array of card objects,
-	favoriteInsults: Array of strings,
+	hand: Array of card Objects,
+	favoriteInsults: Array of Strings,
 	roundsWon: Number,
-	roundsLost: Numnber,
+	roundsLost: Number,
 	???: null
 }
 ```
@@ -42,7 +42,7 @@ let insults = ["You, sir, are a braggart.", "I demand satisfaction.", "etc."];
 let deck = [
 	{
 		suit: String,
-		// ["♤", "♢", "♧", "♡"]
+		// "♤", "♢", "♧", "♡"
 		rank: Number,
 		value: Number,
 		// value between 2 and 14 ace high
@@ -103,12 +103,12 @@ let deck = [
 - `displayWinnersMsg()`
 - consider displaying stats: `displayStats()`
 - `exchangeInsults()`
-- ask if players would like to play again: `playAgainPrompt()`
+- ask human to play again: `playAgainPrompt()`
 
 ## Consider displaying stats at the end of a game
 - `displayStats()`
 
-## Ask if players would like to play again
+## Ask human to play again
 - `playAgainPrompt()`
 
 ```
