@@ -3,21 +3,81 @@
 # Initial set up
 
 ## Upon page load, game starts
-
+- Initialize game
+	-- initializeGame()
+	-- consider Game class
+		--- game state play = true
+	-- create players: createPlayers()
 - Create two players 
-
+	-- createPlayers()
+	-- consider Player class
+		--- name
+		--- hand
+		--- favoriteInsults
+		--- ? roundsWon
+		--- ? roundsLost
+		--- ???
 - Exchange insults
-
-	-- You, sir, are a braggart
-
-	-- I demand satisfaction 
-
+	-- exchangeInsults()
+	-- Freddie: "You, sir, are a braggart."
+	-- Nellie: "I demand satisfaction."
 - Create card deck
-
+	-- createDeck()
+	-- leverage my previous card game deck function
+	-- card object
+		--- suit
+		--- rank
+		--- value: between 2 and 14 ace high
 - Shuffle deck
-
+	-- shuffle() 
+	-- leverage my previous card game shuffle function
 - Deal 26 cards to each player
-
-- Turn over 1st cards
-
-- Compare
+	-- deal()
+	-- leverage my previous card game deal function
+	-- store cards in each players' hand 
+- Turn over cards
+	-- turnOverCards()
+- Compare cards
+	-- compareCards()
+	-- if same cards: thisIsWar()
+	-- else, highest card wins and that player gets both cards
+		--- move cards to bottom of winner's deck: collectCards()
+		--- display results of the round: displayRoundResults()
+		--- check if game is over: isGameOver()
+- War
+	-- thisIsWar() 
+	-- each player places three cards face down and one card face up
+	-- compareCards()
+- Check if game is over
+	-- isGameOver()
+	-- if yes, display winner message: displayWinnersMsg()
+	-- ...and ask if players want to play again
+	-- else, turnOverCards()
+- Move cards to winning player's hand
+	-- collectCards()
+	-- cards go to bottom of player's deck
+- Display (print) results after each round
+	-- displayRoundResults()
+	-- at minimum:
+		--- cards played by each user
+		--- player who won the round
+		--- how many cards each player has
+	-- consider:
+		--- current round number
+		--- exchange more insults: exchangeInsults()
+		--- ???
+- Display winner's message
+	-- displayWinnersMsg()
+	-- consider displaying stats: displayStats()
+	-- exchangeInsults()
+	-- ask if players would like to play again: playAgainPrompt()
+- Consider displaying stats at the end of a game
+	-- displayStats()
+		-- ???
+- Ask if players would like to play again
+	-- playAgainPrompt()
+	-- "Enter `gameStatus = "war is peace"` in the console to start a war."
+	-- if yes, initializeGame()
+		--- consider keeping game stats
+	-- else, exchangeInsults() directed at human, anti-war card game, console dweller and...
+		--- ...do something???
