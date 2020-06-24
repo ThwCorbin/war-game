@@ -2,6 +2,23 @@ console.log(
   "Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
+const game = {
+	active: false,
+	rounds: 0,
+	startWar: null
+};
+
+class Player {
+	constructor(fName, lName, title, userName, hand) {
+		this.fName = fName;
+		this.lName = lName;
+		this.title = title;
+		this.userName = userName;
+		this.hand = hand;
+	}
+	// add a player introduction console.log
+}
+
 const newDeck = () => {
   const deck = [];
   const suits = ["♤", "♢", "♧", "♡"];
@@ -56,11 +73,22 @@ let horatioCard = deck.shift();
 let pierreCard = deck.pop();
 
 horatioCard.rank === pierreCard.rank
-  ? console.log(`This is war! Lord Nelson had the ${horatioCard.card}, and Admiral Villeneuve had the ${pierreCard.card}.`)
+  ? console.log(
+      `This is war! Lord Nelson had the ${horatioCard.card}, and Admiral Villeneuve had the ${pierreCard.card}.`
+    )
   : horatioCard.rank > pierreCard.rank
   ? console.log(
       `Lord Nelson wins with the ${horatioCard.card}! Admiral Villeneuve had the ${pierreCard.card}.`
     )
   : console.log(
       `Admiral Villeneuve wins with the ${pierreCard.card}! Lord Nelson had the ${horatioCard.card}.`
-    );
+		);
+		
+
+
+
+let startGame = () => {
+	game.active = true;
+};
+
+startGame();

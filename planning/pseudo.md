@@ -17,14 +17,17 @@ const game = {
 - consider Player class:
 
 ```js
-playerOne {
-	name: "Lord Horatio Nelson",
-	hand: Array of card Objects,
-	favoriteInsults: Array of Strings,
-	roundsWon: Number,
-	roundsLost: Number,
-	???: null
+class Player {
+	constructor(fName, lName, title, userName, hand) {
+		this.fName = fName;
+		this.lName = lName;
+		this.title = title;
+		this.userName = userName;
+		this.hand = hand;
+	}
+	// add a player introduction console.log
 }
+
 ```
 
 ## Exchange insults
