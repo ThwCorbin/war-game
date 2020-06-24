@@ -24,6 +24,26 @@ class Player {
   }
 }
 
+let createPlayers = () => {
+  // * Assume this data comes from new players logging in to the game
+  let nelson = new Player(
+    "Horatio",
+    "Nelson",
+    "Admiral",
+    "hnelson1805",
+    "HMS Victory"
+  );
+  let villen = new Player(
+    "Pierre",
+    "Villeneuve",
+    "Admiral",
+    "pvillen1806",
+    "Bucentaure"
+  );
+  game.players.push(nelson, villen);
+  game.players.forEach((player) => player.introduction());
+};
+
 const newDeck = () => {
   const deck = [];
   const suits = ["♤", "♢", "♧", "♡"];
@@ -71,34 +91,17 @@ const shuffle = (deck) => {
   return deck;
 };
 
-let createPlayers = () => {
-  // Assume this data comes from a new player logging in to the game
-  let nelson = new Player(
-    "Horatio",
-    "Nelson",
-    "Admiral",
-    "hnelson1805",
-    "HMS Victory"
-  );
-  let villen = new Player(
-    "Pierre",
-    "Villeneuve",
-    "Admiral",
-    "pvillen1806",
-    "Bucentaure"
-  );
-	game.players.push(nelson, villen);
-	game.players.forEach(player => player.introduction());
-};
-
 let deal = () => {
-	// code
+  game.deck.forEach((card, idx) => {
+    idx % 2 === 0
+      ? game.players[0].hand.unshift(card)
+      : game.players[1].hand.unshift(card);
+  });
 };
 
 let compareCards = () => {
   // let horatioCard = deck.shift();
   // let pierreCard = deck.pop();
-
   // horatioCard.rank === pierreCard.rank
   //   ? console.log(
   //       `This is war! Lord Nelson had the ${horatioCard.card}, and Admiral Villeneuve had the ${pierreCard.card}.`
@@ -116,6 +119,7 @@ let startGame = () => {
   game.active = true;
   createPlayers();
   game.deck = shuffle(newDeck());
+  deal();
 };
 
 startGame();
