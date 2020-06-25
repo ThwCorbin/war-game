@@ -13,7 +13,6 @@ console.log(
 
 const game = {
   round: 1,
-  startWar: null,
   players: [],
   deck: null,
 };
