@@ -3,11 +3,12 @@ console.log(
 );
 
 // todo displayWinnersMsg() when game is over
-// todo consider combining displayRoundResults() messages into one function
+// todo reset() game object before starting a new game
+// todo reset() or keep player instances? before starting new game
+// todo reset() if keeping players, fix four players
+// todo reset() if not, remove two player instances
 // todo playAgainPrompt() to restart the game
-// todo reset game object before starting a new game
-// todo keep player instances? or reset before starting a new game
-// todo if keeping players, fix four players. if not, remove player instances
+// todo consider combining displayRoundResults() messages into one function
 // todo exchangeInsults() optional
 // todo displayStats() optional beginning and after 10 rounds
 
@@ -109,9 +110,17 @@ const deal = () => {
   });
 };
 
+const reset = () => {
+  //* need to reset before running startGame()
+  //  game.players.length = 0;
+  //  game.deck = null;
+  //  game.round = 1;
+};
+
 const displayWinnersMsg = () => {
   // code here
-  console.log(`Run startGame() in the console to reset the game`);
+  //* playAgainPrompt();
+  // console.log(`Run startGame() in the console to reset the game`);
 };
 
 const isGameOver = (gameover) => {
