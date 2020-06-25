@@ -2,13 +2,14 @@ console.log(
   "Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
+// todo I don't need the parameters in createPlayers = (...player) or startGame()
 // todo displayWinnersMsg() when game is over
 // todo reset() game object before starting a new game
 // todo reset() or keep player instances? before starting new game
 // todo reset() if keeping players, fix four players
 // todo reset() if not, remove two player instances
 // todo playAgainPrompt() to restart the game
-// todo consider combining displayRoundResults() messages into one function
+// todo displayRoundResults() optional combine messages into one function
 // todo exchangeInsults() optional
 // todo displayStats() optional beginning and after 10 rounds
 
