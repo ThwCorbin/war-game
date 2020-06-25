@@ -2,6 +2,15 @@ console.log(
   "Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
+// todo displayWinnersMsg() when game is over
+// todo consider combining displayRoundResults() messages into one function
+// todo playAgainPrompt() to restart the game
+// todo reset game object before starting a new game
+// todo keep player instances? or reset before starting a new game
+// todo if keeping players, fix four players. if not, remove player instances
+// todo exchangeInsults() optional
+// todo displayStats() optional
+
 const game = {
   active: false,
   round: 1,
@@ -24,22 +33,24 @@ class Player {
   }
 }
 
-const createPlayers = () => {
-  // * Assume this data comes from new players logging in to the game
-  let nelson = new Player(
-    "Horatio",
-    "Nelson",
-    "Admiral",
-    "hnelson1805",
-    "HMS Victory"
-  );
-  let villen = new Player(
-    "Pierre",
-    "Villeneuve",
-    "Admiral",
-    "pvillen1806",
-    "Bucentaure"
-  );
+// * Assume player data is from new players logging in to the game
+let nelson = new Player(
+  "Horatio",
+  "Nelson",
+  "Admiral",
+  "hnelson1805",
+  "HMS Victory"
+);
+
+let villen = new Player(
+  "Pierre",
+  "Villeneuve",
+  "Admiral",
+  "pvillen1806",
+  "Bucentaure"
+);
+
+const createPlayers = (...player) => {
   game.players.push(nelson, villen);
   game.players.forEach((player) => player.introduction());
 };
@@ -71,6 +82,7 @@ const newDeck = () => {
   return deck;
 };
 
+//* Based on a Fischer-Yates shuffle
 const shuffle = (deck) => {
   //* deck is an array of card objects
   let numUnshuffledCards = deck.length;
@@ -99,11 +111,55 @@ const deal = () => {
   });
 };
 
+const displayWinnersMsg = () => {
+  // code here
+  console.log(`Run startGame() in the console to reset the game`);
+};
+
+const isGameOver = (gameover) => {
+  //* if gameover true, end the game because one of the players
+  //* doesn't have enough cards for thisIsWar()
+  if (gameover)
+    console.log(
+      "!!!! The game is over owing to one player having too few cards to go to war !!!!"
+    );
+
+  //* is either player's hand empty?
+  !game.players[0].hand.length || !game.players[1].hand.length
+    ? console.log(
+        "!!! The game is over owing to one player having no cards !!!"
+      )
+    : turnCards();
+};
+
 const collectCards = (winner, warCards) => {
-  game.players[winner].hand.push(warCards);
+  //* Add cards to winner's hand
+  game.players[winner].hand.push(...warCards);
+
+  //* Print how may cards each player has after the round
+  console.log(
+    `${game.players[0].title} ${game.players[0].lName} has ${game.players[0].hand.length} cards`
+  );
+  console.log(
+    `${game.players[1].title} ${game.players[1].lName} has ${game.players[1].hand.length} cards`
+  );
+
+  //* Update round
+  game.round++;
+
+  //// console.log("Run turnCards() in the console to play next round.");
+  isGameOver();
 };
 
 const thisIsWar = (warCards) => {
+  //* If either player has less than four cards (3 to deal down & 1 to turnover)
+  //* then end the game
+  if (game.players[0].hand.length < 4 || game.players[1].hand.length < 4) {
+    isGameOver(true);
+    //* Stop this function
+    return;
+  }
+
   //* Remove 3 cards from the top of each player's hand
   //* Store the cards in temp card arrays
   let cardsWar1 = game.players[0].hand.splice(0, 3);
@@ -119,9 +175,8 @@ const thisIsWar = (warCards) => {
 const compareCards = (warCards) => {
   let winner;
   //* Compare cards and assign winner 0 or 1
-   warCards[0].rank > warCards[1].rank
-    ? (winner = 0)
-    : (winner = 1);
+
+  warCards[0].rank > warCards[1].rank ? (winner = 0) : (winner = 1);
 
   //* Print round results
   console.log(
@@ -130,20 +185,11 @@ const compareCards = (warCards) => {
 
   //* Send won card objects to collectCards()
   collectCards(winner, warCards);
-
-  //* Print how may cards each player has after the round
-  console.log(
-    `${game.players[0].title} ${game.players[0].lName} has ${game.players[0].hand.length} cards`
-  );
-  console.log(
-    `${game.players[1].title} ${game.players[1].lName} has ${game.players[1].hand.length} cards`
-  );
 };
 
 const turnCards = (warCards) => {
   //* Remove top card from each players hand and store in array
   let topCards = [game.players[0].hand.shift(), game.players[1].hand.shift()];
-  console.log(`${topCards[0].card} & ${topCards[1].card}`)
 
   //* turn over cards and print
   console.log(
@@ -157,16 +203,12 @@ const turnCards = (warCards) => {
   //* --warCards holds the cards involved in the war passed from thisIsWar()
   //* --combine warCards with each player's new top card stored in topCards array
   //* if !warCards, assign each player's top card to warCards array
-  warCards
-    ? warCards = [...topCards, ...warCards]
-    : warCards = topCards;
-  console.log(warCards);
-
+  warCards ? (warCards = [...topCards, ...warCards]) : (warCards = topCards);
 
   //* check if turned over cards are the same rank
   //* if yes, pass warCards to thisIsWar()
   //* if no, pass wardCards to comp
-  if (topCards[0].card === topCards[1].card) {
+  if (topCards[0].rank === topCards[1].rank) {
     console.log(`${topCards[0].card} & ${topCards[1].card}. This is war!`);
     thisIsWar(warCards);
   } else {
@@ -176,10 +218,12 @@ const turnCards = (warCards) => {
 
 const startGame = () => {
   game.active = true;
-  createPlayers();
+  // * Assume player data is from new players logging in to the game
+  createPlayers(nelson, villen);
   game.deck = shuffle(newDeck());
   deal();
-  turnCards();
+  // turnCards();
+  console.log(`Run turnCards() in the console to begin the game`);
 };
 
 startGame();
