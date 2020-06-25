@@ -12,7 +12,6 @@ console.log(
 // todo displayStats() optional beginning and after 10 rounds
 
 const game = {
-  active: false,
   round: 1,
   startWar: null,
   players: [],
@@ -220,7 +219,6 @@ const turnCards = (warCards) => {
 };
 
 const startGame = () => {
-  game.active = true;
   // * Assume player data is from new players logging in to the game
   createPlayers(nelson, villen);
   game.deck = shuffle(newDeck());
