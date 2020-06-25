@@ -9,7 +9,7 @@ console.log(
 // todo keep player instances? or reset before starting a new game
 // todo if keeping players, fix four players. if not, remove player instances
 // todo exchangeInsults() optional
-// todo displayStats() optional
+// todo displayStats() optional beginning and after 10 rounds
 
 const game = {
   active: false,
@@ -119,10 +119,13 @@ const displayWinnersMsg = () => {
 const isGameOver = (gameover) => {
   //* if gameover true, end the game because one of the players
   //* doesn't have enough cards for thisIsWar()
-  if (gameover)
+  if (gameover) {
     console.log(
       "!!!! The game is over owing to one player having too few cards to go to war !!!!"
     );
+    //* Stop the function
+    return;
+  }
 
   //* is either player's hand empty?
   !game.players[0].hand.length || !game.players[1].hand.length
