@@ -232,6 +232,7 @@ const startGame = () => {
   createPlayers(nelson, villen);
   game.deck = shuffle(newDeck());
   deal();
+  // * Instead of running on page load, the human can invoke turnCards()
   // turnCards();
   console.log(`Run turnCards() in the console to begin the game`);
 };
