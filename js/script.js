@@ -118,28 +118,36 @@ const reset = () => {
   //  game.round = 1;
 };
 
-const displayWinnersMsg = () => {
+const displayWinnersMsg = (gameWinner, notEnoughCards) => {
   // code here
+  if (notEnoughCards) {
+    console.log(
+      "!!!! The game is over owing to one player having too few cards to go to war !!!!"
+    );
+  } else {
+    console.log("!!! The game is over owing to one player having no cards !!!");
+  }
+
   //* playAgainPrompt();
   // console.log(`Run startGame() in the console to reset the game`);
 };
 
-const isGameOver = (gameover) => {
+const isGameOver = (gameover, gameWinner) => {
   //* if gameover true, end the game because one of the players
   //* doesn't have enough cards for thisIsWar()
+  //* pass game winner and reason "not-enought-cards" to displayWinnersMsg
   if (gameover) {
-    console.log(
-      "!!!! The game is over owing to one player having too few cards to go to war !!!!"
-    );
+    displayWinnersMsg(gameWinner, "not-enough-cards");
     //* Stop the function
     return;
   }
 
-  //* is either player's hand empty?
-  !game.players[0].hand.length || !game.players[1].hand.length
-    ? console.log(
-        "!!! The game is over owing to one player having no cards !!!"
-      )
+  //* is either player's hand empty? Pass game winner to displayWinnersMsg
+  //* or continue game with turnCards()
+  !game.players[0].hand.length
+    ? displayWinnersMsg(game.players[1])
+    : !game.players[1].hand.length
+    ? displayWinnersMsg(game.players[0])
     : turnCards();
 };
 
@@ -164,9 +172,11 @@ const collectCards = (winner, warCards) => {
 
 const thisIsWar = (warCards) => {
   //* If either player has less than four cards (3 to deal down & 1 to turnover)
-  //* then end the game
+  //* then end the game passing game winner to isGameOver()
   if (game.players[0].hand.length < 4 || game.players[1].hand.length < 4) {
-    isGameOver(true);
+    game.players[0].hand.length < 4
+      ? isGameOver(true, game.players[1])
+      : isGameOver(true, game.players[0]);
     //* Stop this function
     return;
   }
