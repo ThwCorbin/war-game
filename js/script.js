@@ -1,5 +1,5 @@
 console.log(
-  "Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
+	"Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
 // todo I don't need the parameters in createPlayers = (...player) or startGame()
@@ -14,237 +14,237 @@ console.log(
 // todo displayStats() optional beginning and after 10 rounds
 
 const game = {
-  players: [],
-  deck: null,
-  round: 1,
+	players: [],
+	deck: null,
+	round: 1,
 };
 
 class Player {
-  constructor(fName, lName, title, userName, ship) {
-    this.fName = fName;
-    this.lName = lName;
-    this.title = title;
-    this.userName = userName;
-    this.ship = ship;
-    this.hand = [];
-  }
-  introduction() {
-    console.log(`${this.title} ${this.lName} has joined the war.`);
-  }
+	constructor(fName, lName, title, userName, ship) {
+		this.fName = fName;
+		this.lName = lName;
+		this.title = title;
+		this.userName = userName;
+		this.ship = ship;
+		this.hand = [];
+	}
+	introduction() {
+		console.log(`${this.title} ${this.lName} has joined the war.`);
+	}
 }
 
 // * Assume player data is from new players logging in to the game
 let nelson = new Player(
-  "Horatio",
-  "Nelson",
-  "Admiral",
-  "hnelson1805",
-  "HMS Victory"
+	"Horatio",
+	"Nelson",
+	"Admiral",
+	"hnelson1805",
+	"HMS Victory"
 );
 
 let villen = new Player(
-  "Pierre",
-  "Villeneuve",
-  "Admiral",
-  "pvillen1806",
-  "Bucentaure"
+	"Pierre",
+	"Villeneuve",
+	"Admiral",
+	"pvillen1806",
+	"Bucentaure"
 );
 
 const createPlayers = (...player) => {
-  game.players.push(nelson, villen);
-  game.players.forEach((player) => player.introduction());
+	game.players.push(nelson, villen);
+	game.players.forEach((player) => player.introduction());
 };
 
 const newDeck = () => {
-  const deck = [];
-  const suits = ["♤", "♢", "♧", "♡"];
+	const deck = [];
+	const suits = ["♤", "♢", "♧", "♡"];
 
-  //* Build deck as an array of objects
-  for (let i = 2; i <= 14; i++) {
-    for (let j = 0; j < suits.length; j++) {
-      deck.push({
-        card:
-          (i <= 10
-            ? i
-            : i === 11
-            ? "J"
-            : i === 12
-            ? "Q"
-            : i === 13
-            ? "K"
-            : "A") + suits[j],
-        rank: i,
-        suit: suits[j],
-        color: j % 2 === 0 ? "black" : "red",
-      });
-    }
-  }
-  return deck;
+	//* Build deck as an array of objects
+	for (let i = 2; i <= 14; i++) {
+		for (let j = 0; j < suits.length; j++) {
+			deck.push({
+				card:
+					(i <= 10
+						? i
+						: i === 11
+						? "J"
+						: i === 12
+						? "Q"
+						: i === 13
+						? "K"
+						: "A") + suits[j],
+				rank: i,
+				suit: suits[j],
+				color: j % 2 === 0 ? "black" : "red",
+			});
+		}
+	}
+	return deck;
 };
 
 //* Based on a Fischer-Yates shuffle
 const shuffle = (deck) => {
-  //* deck is an array of card objects
-  let numUnshuffledCards = deck.length;
-  let randomUnshuffledCard;
+	//* deck is an array of card objects
+	let numUnshuffledCards = deck.length;
+	let randomUnshuffledCard;
 
-  //* While unshuffled cards remain
-  while (numUnshuffledCards) {
-    //* Pick random number betweeen 0 inclusive and number of unshuffled cards
-    //* Then decrement the number of unshuffled cards by 1
-    randomUnshuffledCard = Math.floor(Math.random() * numUnshuffledCards--);
-    //* Swap the random card with the last unshuffled card in the array
-    [deck[randomUnshuffledCard], deck[numUnshuffledCards]] = [
-      deck[numUnshuffledCards],
-      deck[randomUnshuffledCard],
-    ];
-  }
+	//* While unshuffled cards remain
+	while (numUnshuffledCards) {
+		//* Pick random number betweeen 0 inclusive and number of unshuffled cards
+		//* Then decrement the number of unshuffled cards by 1
+		randomUnshuffledCard = Math.floor(Math.random() * numUnshuffledCards--);
+		//* Swap the random card with the last unshuffled card in the array
+		[deck[randomUnshuffledCard], deck[numUnshuffledCards]] = [
+			deck[numUnshuffledCards],
+			deck[randomUnshuffledCard],
+		];
+	}
 
-  return deck;
+	return deck;
 };
 
 const deal = () => {
-  game.deck.forEach((card, idx) => {
-    idx % 2 === 0
-      ? game.players[0].hand.unshift(card)
-      : game.players[1].hand.unshift(card);
-  });
+	game.deck.forEach((card, idx) => {
+		idx % 2 === 0
+			? game.players[0].hand.unshift(card)
+			: game.players[1].hand.unshift(card);
+	});
 };
 
 const reset = () => {
-  //* need to reset before running startGame()
-  //  game.players.length = 0;
-  //  game.deck = null;
-  //  game.round = 1;
+	//* need to reset before running startGame()
+	//  game.players.length = 0;
+	//  game.deck = null;
+	//  game.round = 1;
 };
 
 const displayWinnersMsg = (gameWinner, notEnoughCards) => {
-  // code here
-  if (notEnoughCards) {
-    console.log(
-      "!!!! The game is over owing to one player having too few cards to go to war !!!!"
-    );
-  } else {
-    console.log("!!! The game is over owing to one player having no cards !!!");
-  }
+	// code here
+	if (notEnoughCards) {
+		console.log(
+			"!!!! The game is over owing to one player having too few cards to go to war !!!!"
+		);
+	} else {
+		console.log("!!! The game is over owing to one player having no cards !!!");
+	}
 
-  //* playAgainPrompt();
-  // console.log(`Run startGame() in the console to reset the game`);
+	//* playAgainPrompt();
+	// console.log(`Run startGame() in the console to reset the game`);
 };
 
 const isGameOver = (gameover, gameWinner) => {
-  //* if gameover true, end the game because one of the players
-  //* doesn't have enough cards for thisIsWar()
-  //* pass game winner and reason "not-enought-cards" to displayWinnersMsg
-  if (gameover) {
-    displayWinnersMsg(gameWinner, "not-enough-cards");
-    //* Stop the function
-    return;
-  }
+	//* if gameover true, end the game because one of the players
+	//* doesn't have enough cards for thisIsWar()
+	//* pass game winner and reason "not-enought-cards" to displayWinnersMsg
+	if (gameover) {
+		displayWinnersMsg(gameWinner, "not-enough-cards");
+		//* Stop the function
+		return;
+	}
 
-  //* is either player's hand empty? Pass game winner to displayWinnersMsg
-  //* or continue game with turnCards()
-  !game.players[0].hand.length
-    ? displayWinnersMsg(game.players[1])
-    : !game.players[1].hand.length
-    ? displayWinnersMsg(game.players[0])
-    : turnCards();
+	//* is either player's hand empty? Pass game winner to displayWinnersMsg
+	//* or continue game with turnCards()
+	!game.players[0].hand.length
+		? displayWinnersMsg(game.players[1])
+		: !game.players[1].hand.length
+		? displayWinnersMsg(game.players[0])
+		: turnCards();
 };
 
 const collectCards = (winner, warCards) => {
-  //* Add cards to winner's hand
-  game.players[winner].hand.push(...warCards);
+	//* Add cards to winner's hand
+	game.players[winner].hand.push(...warCards);
 
-  //* Print how may cards each player has after the round
-  console.log(
-    `${game.players[0].title} ${game.players[0].lName} has ${game.players[0].hand.length} cards`
-  );
-  console.log(
-    `${game.players[1].title} ${game.players[1].lName} has ${game.players[1].hand.length} cards`
-  );
+	//* Print how may cards each player has after the round
+	console.log(
+		`${game.players[0].title} ${game.players[0].lName} has ${game.players[0].hand.length} cards`
+	);
+	console.log(
+		`${game.players[1].title} ${game.players[1].lName} has ${game.players[1].hand.length} cards`
+	);
 
-  //* Update round
-  game.round++;
+	//* Update round
+	game.round++;
 
-  //// console.log("Run turnCards() in the console to play next round.");
-  isGameOver();
+	//// console.log("Run turnCards() in the console to play next round.");
+	isGameOver();
 };
 
 const thisIsWar = (warCards) => {
-  //* If either player has less than four cards (3 to deal down & 1 to turnover)
-  //* then end the game passing game winner to isGameOver()
-  if (game.players[0].hand.length < 4 || game.players[1].hand.length < 4) {
-    game.players[0].hand.length < 4
-      ? isGameOver(true, game.players[1])
-      : isGameOver(true, game.players[0]);
-    //* Stop this function
-    return;
-  }
+	//* If either player has less than four cards (3 to deal down & 1 to turnover)
+	//* then end the game passing game winner to isGameOver()
+	if (game.players[0].hand.length < 4 || game.players[1].hand.length < 4) {
+		game.players[0].hand.length < 4
+			? isGameOver(true, game.players[1])
+			: isGameOver(true, game.players[0]);
+		//* Stop this function
+		return;
+	}
 
-  //* Remove 3 cards from the top of each player's hand
-  //* Store the cards in temp card arrays
-  let cardsWar1 = game.players[0].hand.splice(0, 3);
-  let cardsWar2 = game.players[1].hand.splice(0, 3);
+	//* Remove 3 cards from the top of each player's hand
+	//* Store the cards in temp card arrays
+	let cardsWar1 = game.players[0].hand.splice(0, 3);
+	let cardsWar2 = game.players[1].hand.splice(0, 3);
 
-  //* Combine the temp arrays' values with warCards passed from turnCards()
-  warCards = [...warCards, ...cardsWar1, ...cardsWar2];
+	//* Combine the temp arrays' values with warCards passed from turnCards()
+	warCards = [...warCards, ...cardsWar1, ...cardsWar2];
 
-  //* Pass warCards to turnCards() to turn over each player's next card
-  turnCards(warCards);
+	//* Pass warCards to turnCards() to turn over each player's next card
+	turnCards(warCards);
 };
 
 const compareCards = (warCards) => {
-  let winner;
-  //* Compare cards and assign winner 0 or 1
+	let winner;
+	//* Compare cards and assign winner 0 or 1
 
-  warCards[0].rank > warCards[1].rank ? (winner = 0) : (winner = 1);
+	warCards[0].rank > warCards[1].rank ? (winner = 0) : (winner = 1);
 
-  //* Print round results
-  console.log(
-    `Winner Round ${game.round}: ${game.players[winner].title} ${game.players[winner].lName} with a ${warCards[winner].card}`
-  );
+	//* Print round results
+	console.log(
+		`Winner Round ${game.round}: ${game.players[winner].title} ${game.players[winner].lName} with a ${warCards[winner].card}`
+	);
 
-  //* Send won card objects to collectCards()
-  collectCards(winner, warCards);
+	//* Send won card objects to collectCards()
+	collectCards(winner, warCards);
 };
 
 const turnCards = (warCards) => {
-  //* Remove top card from each players hand and store in array
-  let topCards = [game.players[0].hand.shift(), game.players[1].hand.shift()];
+	//* Remove top card from each players hand and store in array
+	let topCards = [game.players[0].hand.shift(), game.players[1].hand.shift()];
 
-  //* turn over cards and print
-  console.log(
-    `Round ${game.round}: ${game.players[0].title} ${game.players[0].lName} turns over: ${topCards[0].card}`
-  );
-  console.log(
-    `Round ${game.round}: ${game.players[1].title} ${game.players[1].lName} turns over: ${topCards[1].card}`
-  );
+	//* turn over cards and print
+	console.log(
+		`Round ${game.round}: ${game.players[0].title} ${game.players[0].lName} turns over: ${topCards[0].card}`
+	);
+	console.log(
+		`Round ${game.round}: ${game.players[1].title} ${game.players[1].lName} turns over: ${topCards[1].card}`
+	);
 
-  //* if warCards exist, the players were already at war
-  //* --warCards holds the cards involved in the war passed from thisIsWar()
-  //* --combine warCards with each player's new top card stored in topCards array
-  //* if !warCards, assign each player's top card to warCards array
-  warCards ? (warCards = [...topCards, ...warCards]) : (warCards = topCards);
+	//* if warCards exist, the players were already at war
+	//* --warCards holds the cards involved in the war passed from thisIsWar()
+	//* --combine warCards with each player's new top card stored in topCards array
+	//* if !warCards, assign each player's top card to warCards array
+	warCards ? (warCards = [...topCards, ...warCards]) : (warCards = topCards);
 
-  //* check if turned over cards are the same rank
-  //* if yes, pass warCards to thisIsWar()
-  //* if no, pass wardCards to comp
-  if (topCards[0].rank === topCards[1].rank) {
-    console.log(`${topCards[0].card} & ${topCards[1].card}. This is war!`);
-    thisIsWar(warCards);
-  } else {
-    compareCards(warCards);
-  }
+	//* check if turned over cards are the same rank
+	//* if yes, pass warCards to thisIsWar()
+	//* if no, pass wardCards to comp
+	if (topCards[0].rank === topCards[1].rank) {
+		console.log(`${topCards[0].card} & ${topCards[1].card}. This is war!`);
+		thisIsWar(warCards);
+	} else {
+		compareCards(warCards);
+	}
 };
 
 const startGame = () => {
-  // * Assume player data is from new players logging in to the game
-  createPlayers(nelson, villen);
-  game.deck = shuffle(newDeck());
-  deal();
-  // * Instead of running on page load, the human can invoke turnCards()
-  // turnCards();
-  console.log(`Run turnCards() in the console to begin the game`);
+	// * Assume player data is from new players logging in to the game
+	createPlayers(nelson, villen);
+	game.deck = shuffle(newDeck());
+	deal();
+	// * Instead of running on page load, the human can invoke turnCards()
+	// turnCards();
+	console.log(`Run turnCards() in the console to begin the game`);
 };
 
 startGame();
