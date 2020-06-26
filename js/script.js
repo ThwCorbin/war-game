@@ -14,9 +14,9 @@ console.log(
 // todo displayStats() optional beginning and after 10 rounds
 
 const game = {
-  round: 1,
   players: [],
   deck: null,
+  round: 1,
 };
 
 class Player {
