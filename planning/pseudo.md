@@ -35,11 +35,16 @@ class Player {
 
 ## Exchange insults
 
+Update: I decided not to implement this, but I left a todo reminder in case I change my mind
+
+````js
+// todo exchangeInsults() optional
+
 - `exchangeInsults()`
 
 ```js
 let insults = ["You, sir, are a braggart.", "I demand satisfaction.", "etc."];
-```
+````
 
 ## Create new card deck
 

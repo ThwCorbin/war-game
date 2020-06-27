@@ -2,14 +2,7 @@ console.log(
 	"Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
-// todo reset() game object before starting a new game
-// todo reset() or keep player instances? before starting new game
-// todo reset() if keeping players, fix four players
-// todo reset() if not, remove two player instances
-// todo playAgainPrompt() to restart the game
-// todo displayRoundResults() optional combine messages into one function
 // todo exchangeInsults() optional
-// todo displayStats() optional beginning and after 10 rounds
 
 const game = {
 	active: false,
@@ -144,9 +137,10 @@ const displayWinnersMsg = (winner, loser, notEnoughCards) => {
 		);
 	}
 
-	setTimeout(function () {
-		console.log("Play again? Enter playAgain() in the console");
-	}, 2000);
+	setTimeout(function () {}, 2000);
+	console.log(
+		`If you would like ${game.players[0].title} ${game.players[0].lName} and ${game.players[1].title} ${game.players[1].lName} to play again, enter playAgain() in the console`
+	);
 };
 
 const isGameOver = () => {
