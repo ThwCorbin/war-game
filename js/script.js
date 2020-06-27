@@ -150,9 +150,16 @@ const isGameOver = (gameover, gameWinner) => {
 		: !game.players[1].hand.length
 		? displayWinnersMsg(game.players[0])
 		: turnCards();
+
+	//*
 };
 
 const collectCards = (winner, warCards) => {
+	console.log(`${warCards[0].card} & ${warCards[1].card}`);
+	//* Shuffle the warCards to prevent "too much recursion"
+	shuffle(warCards);
+	console.log(`${warCards[0].card} & ${warCards[1].card}`);
+
 	//* Add cards to winner's hand
 	game.players[winner].hand.push(...warCards);
 
