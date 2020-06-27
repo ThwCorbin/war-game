@@ -2,9 +2,6 @@ console.log(
 	"Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
-// todo 2000 rounds cutoff or "too much recursion" error
-// todo I don't need the parameters in createPlayers = (...player) or startGame()
-// todo displayWinnersMsg() when game is over
 // todo reset() game object before starting a new game
 // todo reset() or keep player instances? before starting new game
 // todo reset() if keeping players, fix four players
@@ -51,7 +48,8 @@ let villen = new Player(
 	"Bucentaure"
 );
 
-const createPlayers = (...player) => {
+// * Assume player data is from new players logging in to the game
+const createPlayers = () => {
 	game.players.push(nelson, villen);
 	game.players.forEach((player) => player.introduction());
 };
@@ -120,7 +118,6 @@ const reset = () => {
 };
 
 const displayWinnersMsg = (gameWinner, notEnoughCards) => {
-	// code here
 	if (notEnoughCards) {
 		console.log(
 			"!!!! The game is over owing to one player having too few cards to go to war !!!!"
@@ -129,8 +126,7 @@ const displayWinnersMsg = (gameWinner, notEnoughCards) => {
 		console.log("!!! The game is over owing to one player having no cards !!!");
 	}
 
-	//* playAgainPrompt();
-	// console.log(`Run startGame() in the console to reset the game`);
+	// playAgainMsg();
 };
 
 const isGameOver = (gameover, gameWinner) => {
@@ -155,10 +151,8 @@ const isGameOver = (gameover, gameWinner) => {
 };
 
 const collectCards = (winner, warCards) => {
-	console.log(`${warCards[0].card} & ${warCards[1].card}`);
 	//* Shuffle the warCards to prevent "too much recursion"
 	shuffle(warCards);
-	console.log(`${warCards[0].card} & ${warCards[1].card}`);
 
 	//* Add cards to winner's hand
 	game.players[winner].hand.push(...warCards);
@@ -247,7 +241,7 @@ const turnCards = (warCards) => {
 
 const startGame = () => {
 	// * Assume player data is from new players logging in to the game
-	createPlayers(nelson, villen);
+	createPlayers();
 	game.deck = shuffle(newDeck());
 	deal();
 	// * Instead of running on page load, the human can invoke turnCards()
