@@ -2,6 +2,7 @@ console.log(
 	"Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
+// todo 2000 rounds cutoff or "too much recursion" error
 // todo I don't need the parameters in createPlayers = (...player) or startGame()
 // todo displayWinnersMsg() when game is over
 // todo reset() game object before starting a new game
@@ -225,7 +226,7 @@ const turnCards = (warCards) => {
 	//* --combine warCards with each player's new top card stored in topCards array
 	//* if !warCards, assign each player's top card to warCards array
 	warCards ? (warCards = [...topCards, ...warCards]) : (warCards = topCards);
-
+	console.log(warCards);
 	//* check if turned over cards are the same rank
 	//* if yes, pass warCards to thisIsWar()
 	//* if no, pass wardCards to comp
