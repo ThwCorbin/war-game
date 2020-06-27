@@ -12,6 +12,7 @@ console.log(
 // todo displayStats() optional beginning and after 10 rounds
 
 const game = {
+	active: false,
 	players: [],
 	deck: null,
 	round: 1,
@@ -27,7 +28,9 @@ class Player {
 		this.hand = [];
 	}
 	introduction() {
-		console.log(`${this.title} ${this.lName} has joined the war.`);
+		console.log(
+			`${this.title} ${this.lName} on his flagship ${this.ship} has joined the war.`
+		);
 	}
 }
 
@@ -111,14 +114,23 @@ const deal = () => {
 };
 
 const reset = () => {
-	//* need to reset before running startGame()
-	//  game.players.length = 0;
-	//  game.deck = null;
-	//  game.round = 1;
+	game.players[0].hand.length = 0;
+	game.players[1].hand.length = 0;
+	game.deck = null;
+	game.round = 1;
 };
 
-const playAgainMsg = () => {
-	// code
+//* Allow human to play game again via a console command
+const playAgain = () => {
+	//* need to reset game object before running startGame()
+	reset();
+
+	//* introduce players
+	game.players[0].introduction();
+	game.players[1].introduction();
+
+	//* start new game
+	setTimeout(startGame, 3000);
 };
 
 const displayWinnersMsg = (winner, loser, notEnoughCards) => {
@@ -132,7 +144,9 @@ const displayWinnersMsg = (winner, loser, notEnoughCards) => {
 		);
 	}
 
-	playAgainMsg();
+	setTimeout(function () {
+		console.log("Play again? Enter playAgain() in the console");
+	}, 2000);
 };
 
 const isGameOver = () => {
@@ -238,13 +252,21 @@ const turnCards = (cardsInPlay) => {
 };
 
 const startGame = () => {
-	// * Assume player data is from new players logging in to the game
-	createPlayers();
+	//* if this is the first game played, create players
+	if (game.active === false) {
+		game.active = true;
+		// * Assume player data is from new players logging in to the game
+		createPlayers();
+	}
+	//* create a card deck, shuffle it, and store it in the game object
 	game.deck = shuffle(newDeck());
+
 	deal();
-	// * Instead of running on page load, the human can invoke turnCards()
-	// turnCards();
-	console.log(`Run turnCards() in the console to begin the game`);
+
+	setTimeout(turnCards, 3000);
+	//* Alternatively, comment out line above
+	//* and uncomment code below to allow human to invoke turnCards()
+	// console.log(`Run turnCards() in the console to begin the game`);
 };
 
 startGame();
