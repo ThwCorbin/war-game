@@ -121,13 +121,15 @@ const playAgainMsg = () => {
 	// code
 };
 
-const displayWinnersMsg = (notEnoughCards) => {
+const displayWinnersMsg = (winner, loser, notEnoughCards) => {
 	if (notEnoughCards) {
 		console.log(
-			"!!!! The game is over owing to one player having too few cards to go to war !!!!"
+			`Game over! ${winner.title} ${winner.lName} wins! ${loser.title} ${loser.lName} does not have enough cards for a war.`
 		);
 	} else {
-		console.log("!!! The game is over owing to one player having no cards !!!");
+		console.log(
+			`Game over! ${winner.title} ${winner.lName} wins! ${loser.title} ${loser.lName} has no cards left.`
+		);
 	}
 
 	playAgainMsg();
@@ -168,11 +170,11 @@ const collectCards = (winner, cardsInPlay) => {
 const thisIsWar = (cardsInPlay) => {
 	//* if either player has < four cards (3 to deal down & 1 to turnover)
 	//* then end the game because that player doesn't have enough cards for war
-	//* pass string, game winner, and loser to displayWinnersMsg()
+	//* pass game winner, loser, and string (true) to displayWinnersMsg()
 	if (game.players[0].hand.length < 4 || game.players[1].hand.length < 4) {
 		game.players[0].hand.length < 4
-			? displayWinnersMsg("not-enough-cards", game.players[1], game.players[0])
-			: displayWinnersMsg("not-enough-cards", game.players[0], game.players[1]);
+			? displayWinnersMsg(game.players[1], game.players[0], "not-enough-cards")
+			: displayWinnersMsg(game.players[0], game.players[1], "not-enough-cards");
 		//* Stop this function
 		return;
 	}
