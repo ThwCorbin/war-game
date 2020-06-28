@@ -8,6 +8,12 @@ Admiral Horatio Nelson and Admiral Pierre Villeneuve fight the [Battle of Trafal
 
 The War Card Game is my second project for [General Assembly's](https://generalassemb.ly/ "General Assembly homepage") Software Engineering Immersive program.
 
+# Game Play
+
+The program shuffles a deck of cards and deals each player 26 cards. Each player turns over the top card in their hand at the same time. The player with the highest ranking card takes both cards and adds them to the bottom of their hand. Aces are high, and card suits do not matter.
+
+If the players' cards tie, the players have a War! Each player places three cards face down and turns over the fourth card face up. The player with the highest card takes all of the cards in the middle. If there is a tie during the war, the players repeat the war process until there is a winner.(1)
+
 # Technologies
 
 - JavaScript
@@ -20,7 +26,7 @@ The War Card Game is my second project for [General Assembly's](https://generala
 # Usage
 
 - CD to the war-game directory
-- Open index.html in your browser(1)
+- Open index.html in your browser(2)
 - Open your browser console to play the game
 - To play again, enter `playAgain()` in the console
 
@@ -30,4 +36,6 @@ The War Card Game is my second project for [General Assembly's](https://generala
 
 # Notes
 
-Note 1: I use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer "Live Server extension") to serve my program from my code editor, [VS Code](https://code.visualstudio.com/ "Visual Studio Code editor").
+Note 1: The game play description is based on the General Assembly course requirements documentation and the [Pagat website entry for War](https://www.pagat.com/war/war.html "Pagat entry for War card game").
+
+Note 2: I use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer "Live Server extension") to serve my program from my code editor, [VS Code](https://code.visualstudio.com/ "Visual Studio Code editor").
