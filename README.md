@@ -17,8 +17,8 @@ The War Card Game is my second project for [General Assembly's](https://generala
 
 - Clone the repo: https://github.com/ThwCorbin/war-game
 - CD to the war-game directory
-- Open the index.html file in your browserU+00B9
+- Open the index.html file in your browser(1)
 - Open your browser console to play the game
 - To play again, enter `playAgain()` in the console
 
-[1] I use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer "Live Server extension") to serve my program from my code editor, [VS Code](https://code.visualstudio.com/ "Visual Studio Code editor").
+Note 1: I use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer "Live Server extension") to serve my program from my code editor, [VS Code](https://code.visualstudio.com/ "Visual Studio Code editor").
