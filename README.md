@@ -28,4 +28,6 @@ The War Card Game is my second project for [General Assembly's](https://generala
 
 [MIT](https://opensource.org/licenses/MIT "Open Source Initiative MIT License description")
 
+# Notes
+
 Note 1: I use [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer "Live Server extension") to serve my program from my code editor, [VS Code](https://code.visualstudio.com/ "Visual Studio Code editor").
