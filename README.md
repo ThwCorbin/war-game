@@ -26,7 +26,7 @@ The War Card Game is my second project for [General Assembly's](https://generala
 
 # License
 
-[MIT](https://opensource.org/licenses/MIT "Open Source Initiative MIT License description")
+[MIT](LICENSE.txt "MIT License text file")
 
 # Notes
 
