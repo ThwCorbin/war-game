@@ -1,8 +1,14 @@
+//* *** Welcome humans to the console ***************
+
 console.log(
 	"Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
 );
 
+//* *** Todo list ***************
+
 // todo exchangeInsults() optional
+
+//* *** Variables and classes ***************
 
 const game = {
 	active: false,
@@ -27,7 +33,7 @@ class Player {
 	}
 }
 
-// * Assume player data is from new players logging in to the game
+//* Assume player data is from new players logging in to the game
 let nelson = new Player(
 	"Horatio",
 	"Nelson",
@@ -44,7 +50,9 @@ let villen = new Player(
 	"Bucentaure"
 );
 
-// * Assume player data is from new players logging in to the game
+//* *** Functions ***************
+
+//* Assume player data is from new players logging in to the game
 const createPlayers = () => {
 	game.players.push(nelson, villen);
 	game.players.forEach((player) => player.introduction());
@@ -77,7 +85,7 @@ const newDeck = () => {
 	return deck;
 };
 
-//* Based on a Fischer-Yates shuffle
+//* Based on a Fisher-Yates shuffle: https://www.thwcorbin.com/posts/shuffle-card-deck/
 const shuffle = (deck) => {
 	//* deck is an array of card objects
 	let numUnshuffledCards = deck.length;
@@ -106,6 +114,8 @@ const deal = () => {
 	});
 };
 
+//* Reset: each player's hand to empty, deck to null, game round to 1
+//* Do not reset each player's Player instance, only their hands
 const reset = () => {
 	game.players[0].hand.length = 0;
 	game.players[1].hand.length = 0;
