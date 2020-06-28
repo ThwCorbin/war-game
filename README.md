@@ -10,9 +10,11 @@ The War Card Game is my second project for [General Assembly's](https://generala
 
 # Game Play
 
-The program shuffles a deck of cards and deals each player 26 cards. Each player turns over the top card in their hand at the same time. The player with the highest ranking card takes both cards and adds them to the bottom of their hand. Aces are high, and card suits do not matter.
+Shuffle a deck of cards and deal each player 26 cards. Each player turns over the top card in their hand at the same time. The player with the highest ranking card takes both cards and adds them to the bottom of their hand. Aces are high, and card suits do not matter.
 
-If the players' cards tie, the players have a War! Each player places three cards face down and turns over the fourth card face up. The player with the highest card takes all of the cards in the middle. If there is a tie during the war, the players repeat the war process until there is a winner.(1)
+If the players' cards tie, the players have a War. Each player places three cards face down and turns over their fourth card face up. The player turning over the highest card takes all of the cards in the middle. If there is a tie during the war, the players repeat the war process until there is a winner.
+
+The players continue turning over their top cards until the game ends one of two ways. One player has all 52 cards, or one player does not have enough cards in the event of a war. (A player needs four cards in hand for a war: three cards to place face down and one card to turn face up.) The winner exults in righteous glory.(1)
 
 # Technologies
 
