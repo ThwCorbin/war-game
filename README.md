@@ -27,10 +27,12 @@ The players continue turning over their top cards until the game ends one of two
 
 ## Usage
 
-- CD to the war-game directory
+- cd to the war-game directory
 - Open index.html in your browser(2)
 - Open your browser console to play the game
 - To play again, enter `playAgain()` in the console
+
+- or click here: [War Card Game](https://thwcorbin.github.io/war-game/ "Tom's War card game")
 
 ## License
 
