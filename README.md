@@ -31,8 +31,8 @@ The players continue turning over their top cards until the game ends one of two
 
 ## Usage
 
-- cd to the war-game directory
-- Open index.html in your browser(2)
+- `cd` to the war-game directory
+- Open `index.html` in your browser(2)
 - Open your browser console to play the game
 - To play again, enter `playAgain()` in the console
 
