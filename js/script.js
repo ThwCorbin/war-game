@@ -4,10 +4,6 @@ console.log(
 	"'England Expects that every man will do his duty.' -Admiral Nelson"
 );
 
-//* *** Todo list ***************
-
-// todo exchangeInsults() optional
-
 //* *** Variables and classes ***************
 
 const game = {
