@@ -6,7 +6,7 @@ Play a game of [War](https://www.pagat.com/war/war.html "Pagat entry for War car
 
 ## Description
 
-Admiral Horatio Nelson and Admiral Pierre Villeneuve fight the [Battle of Trafalgar](https://www.britannica.com/event/Battle-of-Trafalgar-European-history "Encyclopedia Britannica entry for the Battle of Trafalgar") using the children's card game [War](https://www.pagat.com/war/war.html "Pagat entry for War card game") to determine the winner of the naval engagement. Unlike their 1805 battle, Admiral Villeneuve has a fighting chance with cards. Will Admiral Nelson on his flagship [HMS Victory](https://www.britannica.com/topic/Victory-British-ship "Encyclopedia Britannica entry for the HMS Victory") destroy Admiral Villeneuve's French and Spanish fleet? Learn how to play the game below.
+Admiral Horatio Nelson and Admiral Pierre Villeneuve fight the [Battle of Trafalgar](https://www.britannica.com/event/Battle-of-Trafalgar-European-history "Encyclopedia Britannica entry for the Battle of Trafalgar") using the children's card game [War](https://www.pagat.com/war/war.html "Pagat entry for War card game") to determine the winner of the naval engagement. Unlike their 1805 battle, Admiral Villeneuve has a fighting chance with cards. Will Admiral Nelson on his flagship [HMS Victory](https://www.britannica.com/topic/Victory-British-ship "Encyclopedia Britannica entry for the HMS Victory") destroy Admiral Villeneuve's French and Spanish fleet?
 
 ![War Card Game screenshot](./war-screenshot.png "War in the console")
 
