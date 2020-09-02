@@ -1,7 +1,7 @@
 //* *** Welcome humans to the console ***************
 
 console.log(
-	"Hiya. Open war is upon you whether you would risk it or not. -Aragorn"
+	"'England Expects that every man will do his duty.' -Admiral Nelson"
 );
 
 //* *** Todo list ***************
